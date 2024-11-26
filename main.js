@@ -11,7 +11,11 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.urlencoded({ limit: '100mb', extended: true}));
 app.use(express.json({ limit: '100mb' }));
 
-app.use('/', require('./routes/root'));
+app.use('/portf', require('./routes/root'));
+app.use('/', (res, req) => {
+    res.sendFile(path.join(__dirname,'index.html'));
+    }
+);
 
 //middleware for cookies
 //app.use(cookieParser());
